@@ -173,9 +173,7 @@ function MinMaxQuotes(props) {
       ? { width: "95%", height: "500px" }
       : { width: "0", height: "0px" };
   return (
-    <>
-      <Grid container spacing={6}>
-        <Grid item xs= {12}>
+   
           <Card>
             <div id="minMaxQuotes" style={styleDimensions}></div>
             <Skeleton
@@ -184,9 +182,7 @@ function MinMaxQuotes(props) {
               height={chartData.length > 0 ? 0 : "500px"}
             ></Skeleton>
           </Card>
-        </Grid>
-      </Grid>
-    </>
+       
   );
 }
 export default MinMaxQuotes;
