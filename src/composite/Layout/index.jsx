@@ -1,10 +1,12 @@
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 
 import AppBar from "@material-ui/core/AppBar";
-import Button from "@material-ui/core/Button";
 import React from "react";
-import SaveIcon from "@material-ui/icons/Save";
 import Toolbar from "@material-ui/core/Toolbar";
+import ConfigCard from "../../components/ConfigCard";
+import Line from "../../components/Charts/Line";
+
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -16,13 +18,16 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Layout = (props) => {
     const classes = useStyles();
-    
 	return (
-		<AppBar position='static'>
-			<Toolbar>
-				<img src='/computantis.png' width='140px'></img>
-			</Toolbar>
-		</AppBar>
+		<>
+			<AppBar position='static'>
+				<Toolbar>
+					<img src='/computantis.png' width='140px'></img>
+				</Toolbar>
+			</AppBar>
+			<Line/>
+			<ConfigCard/>
+		</>
 	);
 };
 
