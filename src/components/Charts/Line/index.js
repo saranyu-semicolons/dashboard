@@ -39,6 +39,7 @@ function MinMaxQuotes(props) {
     visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
     cData.push({ date: new Date(2018, 0, i), name: "name" + i, value: visits });
   }
+  console.log("cccccc", cData)
   if (chartData.length === 0) {
     setChartData(cData);
   }
@@ -53,26 +54,26 @@ function MinMaxQuotes(props) {
     valueAxis.title.text = "Cost";
 
     var series = amchart.series.push(new am4charts.LineSeries());
-    series.dataFields.dateX = "uniqueid";
-    series.dataFields.refNo = "refNo";
-    series.dataFields.valueY = "maxAmount";
-    series.tooltipText = "Max: {valueY.value}\nRef No : {refNo}";
-    series.sequencedInterpolation = true;
-    series.fill = series.stroke;
-    series.fillOpacity = 0.3;
-    series.defaultState.transitionDuration = 1000;
-    series.tensionX = 0.8;
+    series.dataFields.dateX = "date";
+    //series.dataFields.refNo = "value";
+    series.dataFields.valueY = "value";
+    series.tooltipText = "{valueY.value}";
+    // series.sequencedInterpolation = true;
+    // series.fill = series.stroke;
+    // series.fillOpacity = 0.3;
+    // series.defaultState.transitionDuration = 1000;
+    // series.tensionX = 0.8;
 
     var series2 = amchart.series.push(new am4charts.LineSeries());
-    series2.dataFields.dateX = "uniqueid";
-    series2.dataFields.refNo = "refNo";
-    series2.dataFields.valueY = "minAmount";
-    series2.sequencedInterpolation = true;
-    series2.defaultState.transitionDuration = 1500;
-    series2.stroke = amchart.colors.getIndex(6);
-    series2.tooltipText = "minAmount: {valueY.value}\nRef No : {refNo}";
-    series2.fill = series2.stroke;
-    series2.tensionX = 0.8;
+    series2.dataFields.dateX = "date";
+    //series2.dataFields.refNo = "refNo";
+    series2.dataFields.valueY = "value";
+    //series2.sequencedInterpolation = true;
+    //series2.defaultState.transitionDuration = 1500;
+    //series2.stroke = amchart.colors.getIndex(6);
+    series2.tooltipText = "{valueY.value}";
+    //series2.fill = series2.stroke;
+    //series2.tensionX = 0.8;
 
     amchart.cursor = new am4charts.XYCursor();
     amchart.cursor.xAxis = dateAxis;
