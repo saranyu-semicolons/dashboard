@@ -37,7 +37,6 @@ const Layout = (props) => {
       <Grid item xs={12}>
         <Line />
       </Grid>
-
       <ConfigCard />
     </Grid>
   );

@@ -225,6 +225,7 @@ const SARTheme = createMuiTheme({
     },
     MuiSvgIcon: {
       root: {
+        color:palette.yellow[700],
         fontSize: "1.5rem",
       }
     },
@@ -778,6 +779,12 @@ const SARTheme = createMuiTheme({
         marginTop: "20px",
         marginBottom: "20px",
       },
+    },
+    MuiDrawer: {
+      paper: {
+        backgroundColor: palette.primary.dark,
+        color: palette.primary.contrastText,
+      }
     },
     MuiSlider: {
       root: {
