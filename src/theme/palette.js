@@ -244,12 +244,12 @@ export default {
   primary: {
     main: "#424242",
     dark: "#202122",
-    light: "#1a73e8",
+    light: "#fcc438",
     contrastText: "#ffffff",
     textColor:'#007AB4',
   },
   secondary: {
-    main: "#1a73e8",
+    main: "#fcc438",
     dark: "#13c2c2",
     light: "#fa8c16",
     contrastText: "#ffffff"
