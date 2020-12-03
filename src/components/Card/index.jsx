@@ -8,6 +8,8 @@ import CardMedia from "@material-ui/core/CardMedia";
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+
 
 const useStyles = makeStyles({
 	root: {
@@ -47,28 +49,26 @@ const useStyles = makeStyles({
 	},
 });
 
-export default function MediaCard() {
+export default function MediaCard(props) {
 	const classes = useStyles();
+	const { children, title, img, desc } = props;
 
 	return (
 		<Card className={classes.root}>
 			<CardHeader
-				title='Virtual Machine'
+				title={title}
 				disableTypography={true}
 				classes={{ content: classes.font14, root: classes.headerRoot }}
 			/>
 			<CardMedia
 				className={classes.media}
-				image='/img/vm.png'
-				title={() => <Typography variant='h2'>Compute</Typography>}
-				disableTypography={true}
+				image={img}
+				disabletypography="true"
 				classes={{ root: classes.mediaRoot }}
 			/>
 			<CardContent classes={{ root: classes.contentRoot }}>
 				<Typography variant='body2' color='textSecondary'>
-					Web service that provides secure, resizable compute capacity in the
-					cloud.Designed to make web-scale cloud computing easier for
-					developers.
+					{desc}
 				</Typography>
 			</CardContent>
 
@@ -86,3 +86,5 @@ export default function MediaCard() {
 		</Card>
 	);
 }
+
+

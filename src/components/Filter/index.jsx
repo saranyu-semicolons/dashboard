@@ -23,7 +23,6 @@ const useStyles = makeStyles({
 });
 
 //TODO: Need to add duration section
-//TODO: remove autocomplete if drawer added
 
 export default function Filter() {
   const classes = useStyles();
@@ -32,16 +31,15 @@ export default function Filter() {
       <Grid item xs={12}>
         <Card>
           <CardContent>
-            <Typography>Filter PlaceHolder</Typography>
-            {/* <Autocomplete
+            <Autocomplete
               id="combo-box-demo"
               options={data}
               getOptionLabel={(option) => option.title}
               style={{ width: 300 }}
               renderInput={(params) => (
-                <TextField {...params} label="Combo box" variant="outlined" />
+                <TextField {...params} label="Select Activity" variant="outlined" />
               )}
-            /> */}
+            />
           </CardContent>
         </Card>
       </Grid>
