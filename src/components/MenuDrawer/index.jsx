@@ -95,7 +95,7 @@ export default function Menu() {
           anchor={anchorDirection}
           open={state[anchorDirection]}
           onClose={toggleDrawer(anchorDirection, false)}
-          paperProps={{classes: {root: classes.paperProps}}}
+          paperprops={{classes: {root: classes.paperProps}}}
         >
           <ServiceListings/>
         </Drawer>
