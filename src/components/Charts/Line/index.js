@@ -31,14 +31,44 @@ const isIgnored = (data) => {
 
 function MinMaxQuotes(props) {
   const chart = useRef(null);
-  const cData = [];
+  //const cData = [];
   const [chartData, setChartData] = useState([]);
   //Rough testing
   let visits = 10;
-  for (let i = 1; i < 366; i++) {
-    visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
-    cData.push({ date: new Date(2018, 0, i), name: "name" + i, value: visits });
-  }
+  // for (let i = 1; i < 366; i++) {
+  //   visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
+  //   cData.push({ date: new Date(2018, 0, i), name: "name" + i, value: visits });
+  // }
+  const cData = [{
+    "date": new Date(2018, 0, 1),
+    "gcp": 6.5,
+    "aws": 2.2,
+    "azure": 2.4
+  }, {
+    "date": new Date(2018, 2, 2),
+    "gcp": 12.3,
+    "aws": 4.9,
+    "azure": 2.4
+  }, {
+    "date": new Date(2018, 3, 3),
+    "gcp": 12.3,
+    "aws": 5.1,
+    "azure": 3.4
+  }, {
+    "date": new Date(2018, 4, 4),
+    "gcp": 2.9,
+    "aws": 5.1,
+    "azure": 2.4
+  }, {
+    "date": new Date(2018, 5, 5),
+    "gcp": 2.9,
+    "aws": 8.3,
+    "azure": 2.4
+  }];
+  
+  
+
+
   console.log("cccccc", cData)
   if (chartData.length === 0) {
     setChartData(cData);
@@ -56,8 +86,9 @@ function MinMaxQuotes(props) {
     var series = amchart.series.push(new am4charts.LineSeries());
     series.dataFields.dateX = "date";
     //series.dataFields.refNo = "value";
-    series.dataFields.valueY = "value";
-    series.tooltipText = "{valueY.value}";
+    series.dataFields.valueY = "gcp";
+    //series.dataFields.value = "gValue";
+    series.tooltipText = "{valueY}";
     // series.sequencedInterpolation = true;
     // series.fill = series.stroke;
     // series.fillOpacity = 0.3;
@@ -67,13 +98,26 @@ function MinMaxQuotes(props) {
     var series2 = amchart.series.push(new am4charts.LineSeries());
     series2.dataFields.dateX = "date";
     //series2.dataFields.refNo = "refNo";
-    series2.dataFields.valueY = "value";
+    series2.dataFields.valueY = "aws";
+    //series2.dataFields.value = "awValue";
     //series2.sequencedInterpolation = true;
     //series2.defaultState.transitionDuration = 1500;
     //series2.stroke = amchart.colors.getIndex(6);
-    series2.tooltipText = "{valueY.value}";
+    series2.tooltipText = "{valueY}"; 
     //series2.fill = series2.stroke;
     //series2.tensionX = 0.8;
+
+
+    var series3 = amchart.series.push(new am4charts.LineSeries());
+    series3.dataFields.dateX = "date";
+    //series2.dataFields.refNo = "refNo";
+    series3.dataFields.valueY = "azure";
+    //series3.dataFields.value = "azValue";
+    //series2.sequencedInterpolation = true;
+    //series2.defaultState.transitionDuration = 1500;
+    //series2.stroke = amchart.colors.getIndex(6);
+    series3.tooltipText = "{valueY}"; 
+
 
     amchart.cursor = new am4charts.XYCursor();
     amchart.cursor.xAxis = dateAxis;
