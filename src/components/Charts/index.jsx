@@ -73,7 +73,7 @@ TabPanel.propTypes = {
 
 export default function Chart(props) {
   const classes = useStyles();
-  const { title } = props;
+  const { title, totalPriceArray } = props;
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -95,14 +95,14 @@ export default function Chart(props) {
       <TabPanel value={value} index={0}>
         <Grid container>
           <Grid item xs={12}>
-            <Line />
+            <Line totalPriceArray={totalPriceArray}/>
           </Grid>
         </Grid>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Grid container>
           <Grid item xs={12}>
-            <Bar />
+            <Bar totalPriceArray={totalPriceArray}/>
           </Grid>
         </Grid>
       </TabPanel>

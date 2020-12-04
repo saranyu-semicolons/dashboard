@@ -5,6 +5,8 @@ import {
   Card ,
   CardContent,
   Typography,
+  TextField,
+  Divider
 } from "@material-ui/core";
 
 const useStyles = makeStyles({
@@ -32,6 +34,11 @@ export default function ConfigCard() {
           <Card>
             <CardContent>
               <Typography>AWS</Typography>
+              <Divider/>
+              <TextField id="standard-basic" label="Annual Cost" />
+              <TextField id="standard-basic" label="Monthly" />
+              <TextField id="standard-basic" label="UpFront" />
+
             </CardContent>
           </Card>
         </Grid>
