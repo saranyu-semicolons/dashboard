@@ -3,189 +3,51 @@ import * as am4charts from "@amcharts/amcharts4/charts";
 import * as am4core from "@amcharts/amcharts4/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+import {barTransformation} from "../../../transformation/barTransformation";
 
-import { Grid, Card } from "@material-ui/core";
 
 am4core.useTheme(am4themes_animated);
 
 function Bar(props) {
+  const {totalPriceArray} = props;
   const [chartData, setChartData] = useState([]);
-//   "totalPriceArray":[
+  console.log("totalPriceArray",totalPriceArray);
+  const cData = barTransformation(totalPriceArray);
+  console.log("cData...",cData);
+// const cData=[];
+//   const cData = [
 //     {
-//        "month":1,
-//        "totalPrice":25.48893258
+//       category: "Month 1",
+//       first: 25.4, //aws.totalprice
+//       second: 55, //azure.totalPrice
+//       third: 60, // gcp.totalPrice
 //     },
 //     {
-//        "month":2,
-//        "totalPrice":50.97786516
+//       category: "Month 2",
+//       first: 30,
+//       second: 50.9,
+//       third: 69,
 //     },
 //     {
-//        "month":3,
-//        "totalPrice":76.46679774
+//       category: "Month 3",
+//       first: 27,
+//       second: 40,
+//       third: 45,
 //     },
 //     {
-//        "month":4,
-//        "totalPrice":101.95573032
+//       category: "Month 4",
+//       first: 50,
+//       second: 33,
+//       third: 22,
 //     },
-//     {
-//        "month":5,
-//        "totalPrice":127.44466290000001
-//     },
-//     {
-//        "month":6,
-//        "totalPrice":152.93359548
-//     },
-//     {
-//        "month":7,
-//        "totalPrice":178.42252806
-//     },
-//     {
-//        "month":8,
-//        "totalPrice":203.91146064
-//     },
-//     {
-//        "month":9,
-//        "totalPrice":229.40039322
-//     },
-//     {
-//        "month":10,
-//        "totalPrice":254.88932580000002
-//     },
-//     {
-//        "month":11,
-//        "totalPrice":280.37825838
-//     },
-//     {
-//        "month":12,
-//        "totalPrice":305.86719096
-//     },
-//     {
-//        "month":13,
-//        "totalPrice":331.35612354
-//     },
-//     {
-//        "month":14,
-//        "totalPrice":356.84505612
-//     },
-//     {
-//        "month":15,
-//        "totalPrice":382.33398869999996
-//     },
-//     {
-//        "month":16,
-//        "totalPrice":407.82292128
-//     },
-//     {
-//        "month":17,
-//        "totalPrice":433.31185386000004
-//     },
-//     {
-//        "month":18,
-//        "totalPrice":458.80078644
-//     },
-//     {
-//        "month":19,
-//        "totalPrice":484.28971902
-//     },
-//     {
-//        "month":20,
-//        "totalPrice":509.77865160000005
-//     },
-//     {
-//        "month":21,
-//        "totalPrice":535.26758418
-//     },
-//     {
-//        "month":22,
-//        "totalPrice":560.75651676
-//     },
-//     {
-//        "month":23,
-//        "totalPrice":586.24544934
-//     },
-//     {
-//        "month":24,
-//        "totalPrice":611.73438192
-//     },
-//     {
-//        "month":25,
-//        "totalPrice":637.2233145
-//     },
-//     {
-//        "month":26,
-//        "totalPrice":662.71224708
-//     },
-//     {
-//        "month":27,
-//        "totalPrice":688.20117966
-//     },
-//     {
-//        "month":28,
-//        "totalPrice":713.69011224
-//     },
-//     {
-//        "month":29,
-//        "totalPrice":739.17904482
-//     },
-//     {
-//        "month":30,
-//        "totalPrice":764.6679773999999
-//     },
-//     {
-//        "month":31,
-//        "totalPrice":790.15690998
-//     },
-//     {
-//        "month":32,
-//        "totalPrice":815.64584256
-//     },
-//     {
-//        "month":33,
-//        "totalPrice":841.13477514
-//     },
-//     {
-//        "month":34,
-//        "totalPrice":866.6237077200001
-//     },
-//     {
-//        "month":35,
-//        "totalPrice":892.1126403000001
-//     },
-//     {
-//        "month":36,
-//        "totalPrice":917.60157288
-//     }
-//  ]
-  const cData = [
-    {
-      category: "Month 1",
-      first: 25.4,
-      second: 55,
-      third: 60,
-    },
-    {
-      category: "Month 2",
-      first: 30,
-      second: 50.9,
-      third: 69,
-    },
-    {
-      category: "Month 3",
-      first: 27,
-      second: 40,
-      third: 45,
-    },
-    {
-      category: "Month 4",
-      first: 50,
-      second: 33,
-      third: 22,
-    },
-  ];
+//   ];
   if (chartData.length === 0) {
     setChartData(cData);
   }
-
+  useEffect(() => {
+    console.log("totalPriceArray",totalPriceArray);
+    //   const cData = barTransformation(totalPriceArray);
+  },[totalPriceArray]);
   useEffect(() => {
     var chart = am4core.create("chartdiv", am4charts.XYChart);
     chart.data = chartData;

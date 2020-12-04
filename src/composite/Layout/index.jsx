@@ -31,9 +31,10 @@ const Layout = (props) => {
 		fetch('http://localhost:3002/chart')
         .then(res => res.json())
         .then((data) => {
-          setData(data);
+          setData(data.data);
         })
 	},[]);
+	console.log("data",data);
 	return (
 		<React.Fragment>
 			<MenuDrawer getCategoryType={getCategoryType}/>
@@ -49,9 +50,8 @@ const Layout = (props) => {
 					<Filter title={category}/>
 				</Grid>
 				<Grid item xs={1}></Grid>
-				
 				<Grid item xs={12}>
-					<Chart/>
+					<Chart totalPriceArray={data.totalPriceArray}/>
 				</Grid>
 				<ConfigCard />
 			</Grid>
