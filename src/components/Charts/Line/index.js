@@ -3,6 +3,7 @@ import * as am4charts from "@amcharts/amcharts4/charts";
 import * as am4core from "@amcharts/amcharts4/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+import {lineTransformation} from "../../../transformation/lineTransformation";
 
 import { Grid, Card } from "@material-ui/core";
 
@@ -31,52 +32,58 @@ const isIgnored = (data) => {
 
 function MinMaxQuotes(props) {
   const chart = useRef(null);
+  const {totalPriceArray} = props;
   const [chartData, setChartData] = useState([]);
-  
+  // const cData= [];
+  console.log("totalPriceArray line",totalPriceArray);
+  const cData = lineTransformation(totalPriceArray);
   //Rough testing
  
-  const cData = [{
-    "date": new Date(2018, 0, 1),
-    "gcp": 6.5,
-    "aws": 2.2,
-    "azure": 2.4
-  }, {
-    "date": new Date(2018, 2, 2),
-    "gcp": 12.3,
-    "aws": 4.9,
-    "azure": 2.4
-  }, {
-    "date": new Date(2018, 3, 3),
-    "gcp": 12.3,
-    "aws": 5.1,
-    "azure": 3.4
-  }, {
-    "date": new Date(2018, 4, 4),
-    "gcp": 2.9,
-    "aws": 5.1,
-    "azure": 2.4
-  }, {
-    "date": new Date(2018, 5, 5),
-    "gcp": 2.9,
-    "aws": 8.3,
-    "azure": 2.4
-  }];
+  // const cData = [{
+  //   "category": "Month 1",
+  //   "gcp": 6.5,
+  //   "aws": 2.2,
+  //   "azure": 2.4
+  // }, {
+  //   "category": "Month 2",
+  //   "gcp": 12.3,
+  //   "aws": 4.9,
+  //   "azure": 2.4
+  // }, {
+  //   "category": "Month 3",
+  //   "gcp": 12.3,
+  //   "aws": 5.1,
+  //   "azure": 3.4
+  // }, {
+  //   "category": "Month 4",
+  //   "gcp": 2.9,
+  //   "aws": 5.1,
+  //   "azure": 2.4
+  // }, {
+  //   "category": "Month 5",
+  //   "gcp": 2.9,
+  //   "aws": 8.3,
+  //   "azure": 2.4
+  // }];
   
-  if (chartData.length === 0) {
-    setChartData(cData);
-  }
+  
+  useEffect(() => {
+    if (chartData.length === 0) {
+      setChartData(cData);
+    }
+  },[cData]);
 // End Rough testing
   useEffect(() => {
     let amchart = am4core.create("minMaxQuotes", am4charts.XYChart);
     amchart.data = chartData;
-    var dateAxis = amchart.xAxes.push(new am4charts.DateAxis());
+    var dateAxis = amchart.xAxes.push(new am4charts.ValueAxis());
     dateAxis.title.text = "Months";
     var valueAxis = amchart.yAxes.push(new am4charts.ValueAxis());
     valueAxis.tooltip.disabled = true;
     valueAxis.title.text = "Cost";
 
     var series = amchart.series.push(new am4charts.LineSeries());
-    series.dataFields.dateX = "date";
+    series.dataFields.valueX = "category";
     //series.dataFields.refNo = "value";
     series.dataFields.valueY = "gcp";
     //series.dataFields.value = "gValue";
@@ -88,7 +95,9 @@ function MinMaxQuotes(props) {
     // series.tensionX = 0.8;
 
     var series2 = amchart.series.push(new am4charts.LineSeries());
-    series2.dataFields.dateX = "date";
+    // series2.dataFields.dateX = "date";
+    series2.dataFields.valueX = "category";
+
     //series2.dataFields.refNo = "refNo";
     series2.dataFields.valueY = "aws";
     //series2.dataFields.value = "awValue";
@@ -101,7 +110,9 @@ function MinMaxQuotes(props) {
 
 
     var series3 = amchart.series.push(new am4charts.LineSeries());
-    series3.dataFields.dateX = "date";
+    // series3.dataFields.dateX = "date";
+    series3.dataFields.valueX = "category";
+
     //series2.dataFields.refNo = "refNo";
     series3.dataFields.valueY = "azure";
     //series3.dataFields.value = "azValue";

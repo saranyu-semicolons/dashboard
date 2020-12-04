@@ -78,6 +78,7 @@ export default function Chart(props) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  console.log("charts...",totalPriceArray);
   return (
     <ListContainer>
       <AppBar position="static" color="secondary">
