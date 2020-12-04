@@ -8,8 +8,9 @@ import Line from "../../components/Charts/Line";
 import Bar from "../../components/Charts/Bar";
 
 import MenuDrawer from "../../components/MenuDrawer";
-import React from "react";
 import Toolbar from "@material-ui/core/Toolbar";
+import React, { useEffect, useRef, useState } from "react";
+
 
 const useStyles = makeStyles((theme) =>
 	createStyles({
@@ -21,10 +22,19 @@ const useStyles = makeStyles((theme) =>
 
 const Layout = (props) => {
 	const classes = useStyles();
-	const [category, setCardCategory] = React.useState("Virtual Machine");
+	const [category, setCardCategory] = React.useState("Get Started");
+	const [data, setData] = React.useState({data:{}});
+	
 	const getCategoryType = (type) => {
 		setCardCategory(type);
 	}
+	useEffect(()=>{
+		fetch('http://localhost:3002/chart')
+        .then(res => res.json())
+        .then((data) => {
+          setData(data);
+        })
+	},[]);
 	return (
 		<React.Fragment>
 			<MenuDrawer getCategoryType={getCategoryType}/>
