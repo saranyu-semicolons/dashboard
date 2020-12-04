@@ -51,7 +51,7 @@ const useStyles = makeStyles({
 
 export default function MediaCard(props) {
 	const classes = useStyles();
-	const { children, title, img, desc } = props;
+	const { children, title, img, desc, getCategoryType } = props;
 
 	return (
 		<Card className={classes.root}>
@@ -79,6 +79,7 @@ export default function MediaCard(props) {
 					variant='contained'
 					fullWidth
 					classes={{ root: classes.ButtonRoot }}
+					onClick = {()=>{getCategoryType(title)}}
 				>
 					Add
 				</Button>

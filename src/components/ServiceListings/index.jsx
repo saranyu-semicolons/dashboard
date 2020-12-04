@@ -58,22 +58,24 @@ TabPanel.propTypes = {
   index: PropTypes.any.isRequired,
   value: PropTypes.any.isRequired,
 };
-const getCards = (value) => {
-  const cards = [];
-  serviceListingData[value].forEach((card,index) =>
-    cards.push(
-      <Grid item xs={12} lg={4} xl={4} key={index}>
-        <Card title={card.title} img={card.img} desc={card.desc}/>
-      </Grid>
-    )
-  );
-  return cards;
-};
-export default function ServiceListings() {
-  const [value, setValue] = React.useState(0);
 
+export default function ServiceListings(props) {
+  const [value, setValue] = React.useState(0);
+  const {getCategoryType,...other} = props;
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    
+  };
+  const getCards = (value) => {
+    const cards = [];
+    serviceListingData[value].forEach((card,index) =>
+      cards.push(
+        <Grid item xs={12} lg={4} xl={4} key={index}>
+          <Card title={card.title} img={card.img} desc={card.desc} getCategoryType={getCategoryType}/>
+        </Grid>
+      )
+    );
+    return cards;
   };
 
   return (

@@ -5,6 +5,8 @@ import ConfigCard from "../../components/ConfigCard";
 import Filter from "../../components/Filter";
 import Grid from "@material-ui/core/Grid";
 import Line from "../../components/Charts/Line";
+import Bar from "../../components/Charts/Bar";
+
 import MenuDrawer from "../../components/MenuDrawer";
 import React from "react";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -19,9 +21,13 @@ const useStyles = makeStyles((theme) =>
 
 const Layout = (props) => {
 	const classes = useStyles();
+	const [category, setCardCategory] = React.useState("Virtual Machine");
+	const getCategoryType = (type) => {
+		setCardCategory(type);
+	}
 	return (
 		<React.Fragment>
-			<MenuDrawer />
+			<MenuDrawer getCategoryType={getCategoryType}/>
 			<Grid container>
 				<Grid item xs={12}>
 					<AppBar position='static'>
@@ -31,9 +37,12 @@ const Layout = (props) => {
 					</AppBar>
 				</Grid>
 				<Grid item xs={11}>
-					<Filter />
+					<Filter title={category}/>
 				</Grid>
 				<Grid item xs={1}></Grid>
+				<Grid item xs={12}>
+					<Bar />
+				</Grid>
 				<Grid item xs={12}>
 					<Line />
 				</Grid>

@@ -50,11 +50,13 @@ const FixedMenuLauncher = styled.div`
   },
 })(MuiDrawer);
 
-export default function Menu() {
+export default function Menu(props) {
   const classes = useStyles();
+  const {category, getCategoryType} = props;
   const [state, setState] = React.useState({
     right: false,
   });
+  
   const anchorDirection = "right";
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -67,25 +69,7 @@ export default function Menu() {
     setState({ ...state, [anchor]: open });
   };
 
-  //TODO: Add tiles to drawer
-  const list = (anchor) => (
-    <div className={classes.list}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
+
 
   return (
     <FixedMenuLauncher>
@@ -97,7 +81,7 @@ export default function Menu() {
           onClose={toggleDrawer(anchorDirection, false)}
           paperprops={{classes: {root: classes.paperProps}}}
         >
-          <ServiceListings/>
+          <ServiceListings getCategoryType = {getCategoryType}/>
         </Drawer>
       </React.Fragment>
     </FixedMenuLauncher>
