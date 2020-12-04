@@ -280,14 +280,14 @@ function Bar(props) {
       ? { width: "95%", height: "500px" }
       : { width: "0", height: "0px" };
   return (
-    <Card>
+    <>
       <div id="chartdiv" style={styleDimensions}></div>
       <Skeleton
         variant="rect"
         width={chartData.length > 0 ? 0 : "100%"}
         height={chartData.length > 0 ? 0 : "500px"}
       ></Skeleton>
-    </Card>
+    </>
   );
 }
 

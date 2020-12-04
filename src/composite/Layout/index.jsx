@@ -4,8 +4,7 @@ import AppBar from "@material-ui/core/AppBar";
 import ConfigCard from "../../components/ConfigCard";
 import Filter from "../../components/Filter";
 import Grid from "@material-ui/core/Grid";
-import Line from "../../components/Charts/Line";
-import Bar from "../../components/Charts/Bar";
+import Chart from "../../components/Charts";
 
 import MenuDrawer from "../../components/MenuDrawer";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -50,11 +49,9 @@ const Layout = (props) => {
 					<Filter title={category}/>
 				</Grid>
 				<Grid item xs={1}></Grid>
+				
 				<Grid item xs={12}>
-					<Bar />
-				</Grid>
-				<Grid item xs={12}>
-					<Line />
+					<Chart/>
 				</Grid>
 				<ConfigCard />
 			</Grid>
