@@ -23,8 +23,9 @@ const Layout = (props) => {
   const classes = useStyles();
   const [category, setCardCategory] = React.useState("Get Started");
   const [data, setData] = React.useState({ data: {} });
-  const [loader, setLoader] = React.useState(false);
 
+  const [activityId, setActivityId] = React.useState(null);
+  const [loader, setLoader] = React.useState(false);
 	const getCategoryType = (type) => {
 		setCardCategory(type);
 	};
@@ -32,17 +33,31 @@ const Layout = (props) => {
   const getDataByActivity = (value) => {
     setLoader(true)
     const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ activityId: value.activityId }),
+    };
+    fetch("http://localhost:3060/chart", requestOptions)
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data.data);
+      });
+    setActivityId(value.activityId);
+  };
+
+  const getDataByConfig = (configValueObj) => {
+    const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ activityId:value.activityId })}
-      fetch('http://localhost:3060/servicePriceJson', requestOptions).then((res) => res.json())
+      body: JSON.stringify({ activityId:activityId,[configValueObj.name]:configValueObj.value })}
+      fetch('http://localhost:3060/servicePriceJson', requestOptions).then((res) => res.json())     
       .then((data) => {
         setData(data);
       });;
   };
   /*
   useEffect(() => {
-    fetch("http://localhost:3002/chart")
+    fetch("http://localhost:3060/chart")
       .then((res) => res.json())
       .then((data) => {
         setData(data.data);
@@ -61,6 +76,7 @@ const Layout = (props) => {
           </AppBar>
         </Grid>
         <Grid item xs={12}>
+
 					<Grid conainer justify='center'>
 						{category === "" ? (
 							<Button variant='contained' color='primary'>
@@ -81,7 +97,7 @@ const Layout = (props) => {
             {category !== "" && <Chart totalPriceArray={data.totalPriceArray} />}
           </Grid>
           <Grid item xs={6}>
-            {category !== "" && <ConfigCard />}
+            {category !== "" && <ConfigCard getDataByConfig={getDataByConfig}/>}
           </Grid>
         </>
         )}
