@@ -10,53 +10,54 @@ import MenuDrawer from "../../components/MenuDrawer";
 import Toolbar from "@material-ui/core/Toolbar";
 import React, { useEffect, useRef, useState } from "react";
 
-
 const useStyles = makeStyles((theme) =>
-	createStyles({
-		button: {
-			margin: theme.spacing(1),
-		},
-	}),
+  createStyles({
+    button: {
+      margin: theme.spacing(1),
+    },
+  })
 );
 
 const Layout = (props) => {
-	const classes = useStyles();
-	const [category, setCardCategory] = React.useState("Get Started");
-	const [data, setData] = React.useState({data:{}});
-	
-	const getCategoryType = (type) => {
-		setCardCategory(type);
-	}
-	useEffect(()=>{
-		fetch('http://localhost:3002/chart')
-        .then(res => res.json())
-        .then((data) => {
-          setData(data.data);
-        })
-	},[]);
-	console.log("data",data);
-	return (
-		<React.Fragment>
-			<MenuDrawer getCategoryType={getCategoryType}/>
-			<Grid container>
-				<Grid item xs={12}>
-					<AppBar position='static'>
-						<Toolbar>
-							<img src='/computantis.png' width='140px'></img>
-						</Toolbar>
-					</AppBar>
-				</Grid>
-				<Grid item xs={11}>
-					<Filter title={category}/>
-				</Grid>
-				<Grid item xs={1}></Grid>
-				<Grid item xs={12}>
-					<Chart totalPriceArray={data.totalPriceArray}/>
-				</Grid>
-				<ConfigCard />
-			</Grid>
-		</React.Fragment>
-	);
+  const classes = useStyles();
+  const [category, setCardCategory] = React.useState("Get Started");
+  const [data, setData] = React.useState({ data: {} });
+
+  const getCategoryType = (type) => {
+    setCardCategory(type);
+  };
+  useEffect(() => {
+    fetch("http://localhost:3002/chart")
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data.data);
+      });
+  }, []);
+  console.log("data", data);
+  return (
+    <React.Fragment>
+      <MenuDrawer getCategoryType={getCategoryType} />
+      <Grid container>
+        <Grid item xs={12}>
+          <AppBar position="static">
+            <Toolbar>
+              <img src="/computantis.png" width="140px"></img>
+            </Toolbar>
+          </AppBar>
+        </Grid>
+        <Grid item xs={12} lg={3}>
+          <ConfigCard />
+        </Grid>
+        <Grid item xs={12} lg={9}>
+          <Filter title={category} />
+        </Grid>
+
+        <Grid item xs={12} lg={9}>
+          <Chart totalPriceArray={data.totalPriceArray} />
+        </Grid>
+      </Grid>
+    </React.Fragment>
+  );
 };
 
 export default Layout;
