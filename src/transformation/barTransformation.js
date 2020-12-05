@@ -7,7 +7,7 @@ export const barTransformation = (data) => {
       category: "Month " + res.AWS[i].month,
       first: res.AWS[i].totalPrice,
       second: res.GCP[i].totalPrice,
-      third: res.AZURE[i].totalPrice,
+      // third: res.AZURE[i].totalPrice,
     });
   }
   return transfData;
