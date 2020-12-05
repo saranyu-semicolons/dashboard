@@ -244,13 +244,22 @@ export default function ConfigCard() {
     );
   };
   return (
-    <Card>
-      <CardContent>
-        {getAwsConfig()}
-        <Divider />
-        {getGCPConfig()}
-      </CardContent>
-    </Card>
+    <Grid container spacing={6}>
+      <Grid item xs={6}>
+        <Card>
+          <CardContent>
+            {getAwsConfig()}
+          </CardContent>
+        </Card>
+      </Grid>
+      <Grid item xs={6}>
+        <Card>
+          <CardContent>
+            {getGCPConfig()}
+          </CardContent>
+        </Card>
+      </Grid>
+    </Grid>
 
   );
 }

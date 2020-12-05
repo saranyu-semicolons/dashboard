@@ -60,12 +60,14 @@ const Layout = (props) => {
             </Toolbar>
           </AppBar>
         </Grid>
-        <Grid item xs={3}>
-          <ConfigCard />
+        <Grid item xs={12}>
+          <Filter title={category} getDataByActivity={getDataByActivity}/>
         </Grid>
-        <Grid item  xs={9}>
-            <Filter title={category} getDataByActivity={getDataByActivity}/>
-            <Chart totalPriceArray={data.totalPriceArray} />
+        <Grid item xs={6}>          
+          <Chart totalPriceArray={data.totalPriceArray} />
+        </Grid>
+        <Grid item  xs={6}>            
+          <ConfigCard />
         </Grid>  
       </Grid>
     </React.Fragment>
