@@ -2,10 +2,6 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Grid,
-  Card,
-  CardContent,
-  Typography,
-  Divider,
 } from "@material-ui/core";
 import Line from "../Charts/Line";
 import Bar from "../Charts/Bar";
@@ -34,16 +30,6 @@ const useStyles = makeStyles({
   },
 });
 
-const ListContainer = styled(Paper)`
-  width: calc(50vw);
-  padding: 0px;
-  margin: 0px;
-`;
-
-const CardHolder = styled(Box)`
-  min-height: calc(100vh);
-  background-color: #424242;
-`;
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -80,33 +66,27 @@ export default function Chart(props) {
   };
   console.log("charts...",totalPriceArray);
   return (
-    <ListContainer>
-      <AppBar position="static" color="secondary">
-        <Tabs
-          value={value}
-          indicatorColor="primary"
-          onChange={handleChange}
-          aria-label="chart"
-          variant="fullWidth"
-        >
-          <Tab label="Line Chart" />
-          <Tab label="Bar Chart" />
-        </Tabs>
-      </AppBar>
-      <TabPanel value={value} index={0}>
-        <Grid container>
-          <Grid item xs={12}>
-            <Line totalPriceArray={totalPriceArray}/>
-          </Grid>
-        </Grid>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <Grid container>
-          <Grid item xs={12}>
-            <Bar totalPriceArray={totalPriceArray}/>
-          </Grid>
-        </Grid>
-      </TabPanel>
-    </ListContainer>
+    <Grid container spacing={6}>
+      <Grid item xs={12}>
+        <AppBar position="static" color="secondary">
+          <Tabs
+            value={value}
+            indicatorColor="primary"
+            onChange={handleChange}
+            aria-label="chart"
+            variant="fullWidth"
+          >
+            <Tab label="Line Chart" />
+            <Tab label="Bar Chart" />
+          </Tabs>
+        </AppBar>
+        <TabPanel value={value} index={0}>
+          <Line totalPriceArray={totalPriceArray} />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <Bar totalPriceArray={totalPriceArray} />
+        </TabPanel>
+      </Grid>
+    </Grid>
   );
 }
