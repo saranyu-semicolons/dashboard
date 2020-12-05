@@ -163,8 +163,6 @@ const handleAWSPayementType = (event) => {
             {getAwsConfig()}
             <Divider />
             <Typography>GCP</Typography>
-            <Divider />
-            <Typography>Azure</Typography>
           </CardContent>
         </Card>
      

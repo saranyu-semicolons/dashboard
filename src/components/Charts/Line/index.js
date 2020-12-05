@@ -109,7 +109,7 @@ function MinMaxQuotes(props) {
     //series2.fill = series2.stroke;
     //series2.tensionX = 0.8;
 
-
+    /*
     var series3 = amchart.series.push(new am4charts.LineSeries());
     // series3.dataFields.dateX = "date";
     series3.dataFields.categoryX = "category";
@@ -120,7 +120,7 @@ function MinMaxQuotes(props) {
     //series2.sequencedInterpolation = true;
     //series2.defaultState.transitionDuration = 1500;
     //series2.stroke = amchart.colors.getIndex(6);
-    series3.tooltipText = "{valueY}"; 
+    series3.tooltipText = "{valueY}";  */
 
 
     amchart.cursor = new am4charts.XYCursor();
