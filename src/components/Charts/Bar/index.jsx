@@ -11,9 +11,7 @@ am4core.useTheme(am4themes_animated);
 function Bar(props) {
   const {totalPriceArray} = props;
   const [chartData, setChartData] = useState([]);
-  console.log("totalPriceArray",totalPriceArray);
   const cData = barTransformation(totalPriceArray);
-  console.log("cData...",cData);
 // const cData=[];
 //   const cData = [
 //     {
