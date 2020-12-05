@@ -38,7 +38,7 @@ function MinMaxQuotes(props) {
   console.log("totalPriceArray line",totalPriceArray);
   const cData = lineTransformation(totalPriceArray);
   //Rough testing
- 
+  console.log("cData=====", cData)
   // const cData = [{
   //   "category": "Month 1",
   //   "gcp": 6.5,
@@ -76,14 +76,15 @@ function MinMaxQuotes(props) {
   useEffect(() => {
     let amchart = am4core.create("minMaxQuotes", am4charts.XYChart);
     amchart.data = chartData;
-    var dateAxis = amchart.xAxes.push(new am4charts.ValueAxis());
-    dateAxis.title.text = "Months";
+    var categoryAxis = amchart.xAxes.push(new am4charts.CategoryAxis());
+    categoryAxis.title.text = "Months";
+    categoryAxis.dataFields.category = "category";
     var valueAxis = amchart.yAxes.push(new am4charts.ValueAxis());
     valueAxis.tooltip.disabled = true;
     valueAxis.title.text = "Cost";
 
     var series = amchart.series.push(new am4charts.LineSeries());
-    series.dataFields.valueX = "category";
+    series.dataFields.categoryX = "category";
     //series.dataFields.refNo = "value";
     series.dataFields.valueY = "gcp";
     //series.dataFields.value = "gValue";
@@ -96,7 +97,7 @@ function MinMaxQuotes(props) {
 
     var series2 = amchart.series.push(new am4charts.LineSeries());
     // series2.dataFields.dateX = "date";
-    series2.dataFields.valueX = "category";
+    series2.dataFields.categoryX = "category";
 
     //series2.dataFields.refNo = "refNo";
     series2.dataFields.valueY = "aws";
@@ -111,7 +112,7 @@ function MinMaxQuotes(props) {
 
     var series3 = amchart.series.push(new am4charts.LineSeries());
     // series3.dataFields.dateX = "date";
-    series3.dataFields.valueX = "category";
+    series3.dataFields.categoryX = "category";
 
     //series2.dataFields.refNo = "refNo";
     series3.dataFields.valueY = "azure";
@@ -123,7 +124,7 @@ function MinMaxQuotes(props) {
 
 
     amchart.cursor = new am4charts.XYCursor();
-    amchart.cursor.xAxis = dateAxis;
+    amchart.cursor.xAxis = categoryAxis;
     amchart.scrollbarX = new am4core.Scrollbar();
 
     // amchart.legend = new am4charts.Legend();
