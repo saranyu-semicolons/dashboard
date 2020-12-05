@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Card, CardContent, Typography, Divider } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
@@ -27,6 +27,12 @@ const useStyles = makeStyles({
 export default function Filter(props) {
   const classes = useStyles();
   const {title} = props;
+  const [value,setValue] = React.useState({id:"1"});
+  const [inputValue, setInputValue] = React.useState('');
+  
+  const handleChange = (event,value) => {
+    props.getDataByActivity(value);
+  }
   return (
     <Grid container spacing={6}>
       <Grid item xs={12}>
@@ -42,8 +48,9 @@ export default function Filter(props) {
             <Autocomplete
               id="flat-demo"
               options={data}
-              getOptionLabel={(option) => option.title}
+              getOptionLabel={(option) => option.activity}
               style={{ width: 300 }}
+              onChange={handleChange}
               renderInput={(params) => (
                 <TextField
                   {...params}
