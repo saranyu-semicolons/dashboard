@@ -145,7 +145,7 @@ const SARTheme = createMuiTheme({
       },
       formControl: {
         "label + &": {
-          marginTop: `${defaultTheme.spacing(6)}px`,
+          marginTop: `0px`,
         }
       }
     },
