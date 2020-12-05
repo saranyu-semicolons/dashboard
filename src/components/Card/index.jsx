@@ -5,11 +5,10 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
+import PropTypes from "prop-types";
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import PropTypes from "prop-types";
-
 
 const useStyles = makeStyles({
 	root: {
@@ -72,7 +71,7 @@ export default function MediaCard(props) {
 				</Typography>
 			</CardContent>
 
-			<CardActions>
+			{<CardActions>
 				<Button
 					size='small'
 					color='primary'
@@ -83,7 +82,7 @@ export default function MediaCard(props) {
 				>
 					Add
 				</Button>
-			</CardActions>
+			</CardActions>}
 		</Card>
 	);
 }
