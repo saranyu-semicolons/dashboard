@@ -40,7 +40,7 @@ export default function Filter(props) {
             </Typography>
             <Divider/>
             <Autocomplete
-              id="combo-box-demo"
+              id="flat-demo"
               options={data}
               getOptionLabel={(option) => option.title}
               style={{ width: 300 }}
