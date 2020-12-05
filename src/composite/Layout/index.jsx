@@ -23,9 +23,22 @@ const Layout = (props) => {
   const [category, setCardCategory] = React.useState("Get Started");
   const [data, setData] = React.useState({ data: {} });
 
+
   const getCategoryType = (type) => {
     setCardCategory(type);
+  }
+
+  const getDataByActivity = (value) => {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ activityId:value.activityId })}
+      fetch('http://localhost:3002/chart', requestOptions).then((res) => res.json())
+      .then((data) => {
+        setData(data.data);
+      });;
   };
+  
   useEffect(() => {
     fetch("http://localhost:3002/chart")
       .then((res) => res.json())
@@ -33,6 +46,8 @@ const Layout = (props) => {
         setData(data.data);
       });
   }, []);
+
+
   console.log("data", data);
   return (
     <React.Fragment>
@@ -49,7 +64,7 @@ const Layout = (props) => {
           <ConfigCard />
         </Grid>
         <Grid item  xs={9}>
-            <Filter title={category} />
+            <Filter title={category} getDataByActivity={getDataByActivity}/>
             <Chart totalPriceArray={data.totalPriceArray} />
         </Grid>  
       </Grid>
