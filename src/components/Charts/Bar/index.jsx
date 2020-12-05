@@ -83,9 +83,9 @@ function Bar(props) {
       return series;
     }
 
-    createSeries("first", "The First");
-    createSeries("second", "The Second");
-    createSeries("third", "The Third");
+    createSeries("first", "AWS");
+    createSeries("second", "GCP");
+    // createSeries("third", "The Third");
 
     function arrangeColumns() {
       var series = chart.series.getIndex(0);
