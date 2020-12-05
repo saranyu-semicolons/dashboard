@@ -45,16 +45,13 @@ const Layout = (props) => {
             </Toolbar>
           </AppBar>
         </Grid>
-        <Grid item xs={12} lg={3}>
+        <Grid item xs={3}>
           <ConfigCard />
         </Grid>
-        <Grid item xs={12} lg={9}>
-          <Filter title={category} />
-        </Grid>
-
-        <Grid item xs={12} lg={9}>
-          <Chart totalPriceArray={data.totalPriceArray} />
-        </Grid>
+        <Grid item  xs={9}>
+            <Filter title={category} />
+            <Chart totalPriceArray={data.totalPriceArray} />
+        </Grid>  
       </Grid>
     </React.Fragment>
   );
