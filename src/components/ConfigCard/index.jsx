@@ -31,10 +31,11 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ConfigCard() {
+export default function ConfigCard(props) {
   const classes = useStyles();
-  const [awsInstanceType, setAWSInstanceType] = React.useState(10);
-  const [awsPricingStrategy, setAWSPricingStrategy] = React.useState(20);
+  const {getDataByConfig, ...other} = props;
+  const [awsInstanceType, setAWSInstanceType] = React.useState("");
+  const [awsPricingStrategy, setAWSPricingStrategy] = React.useState("");
   const [awsReservedStandard, setAWSReservedStandard] = React.useState(30);
   const [awsReserveTerm, setAWSReserveTerm] = React.useState(10);
   const [awsPaymentType, setAWSPayementType] = React.useState(20);
@@ -45,12 +46,14 @@ export default function ConfigCard() {
   const [gcpRAMPricingStrategy, setRAMPricingStrategy] = React.useState(10);
 
   // aws change events
-  const handleAWSInstanceType = (event) => {
+  const handleAWSInstanceType = (event,value) => {
     setAWSInstanceType(event.target.value);
+    getDataByConfig(value)
   };
 
-  const handleAWSPricingStrategy = (event) => {
+  const handleAWSPricingStrategy = (event,value) => {
     setAWSPricingStrategy(event.target.value);
+    getDataByConfig(value)
   };
 
   const handleAWSreservedStandard = (event) => {
@@ -99,7 +102,9 @@ export default function ConfigCard() {
           color="primary"
           value={awsInstanceType}
           onChange={handleAWSInstanceType}
+          label= "Instance Type"
           fullWidth
+          name="awsInstanceType"
         >
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>

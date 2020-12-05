@@ -22,6 +22,8 @@ const Layout = (props) => {
   const classes = useStyles();
   const [category, setCardCategory] = React.useState("Get Started");
   const [data, setData] = React.useState({ data: {} });
+  const [activityId, setActivityId] = React.useState(null);
+
 
 
   const getCategoryType = (type) => {
@@ -30,17 +32,31 @@ const Layout = (props) => {
 
   const getDataByActivity = (value) => {
     const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ activityId: value.activityId }),
+    };
+    fetch("http://localhost:3060/chart", requestOptions)
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data.data);
+      });
+    setActivityId(value.activityId);
+  };
+
+  const getDataByConfig = (configValueObj) => {
+    const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ activityId:value.activityId })}
-      fetch('http://localhost:3002/chart', requestOptions).then((res) => res.json())
+      body: JSON.stringify({ activityId:activityId,[configValueObj.name]:configValueObj.value })}
+      fetch('http://localhost:3060/chart', requestOptions).then((res) => res.json())
       .then((data) => {
         setData(data.data);
       });;
   };
   
   useEffect(() => {
-    fetch("http://localhost:3002/chart")
+    fetch("http://localhost:3060/chart")
       .then((res) => res.json())
       .then((data) => {
         setData(data.data);
@@ -67,7 +83,7 @@ const Layout = (props) => {
           <Chart totalPriceArray={data.totalPriceArray} />
         </Grid>
         <Grid item  xs={6}>            
-          <ConfigCard />
+          <ConfigCard getDataByConfig={getDataByConfig}/>
         </Grid>  
       </Grid>
     </React.Fragment>
