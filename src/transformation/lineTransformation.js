@@ -9,12 +9,10 @@ export const lineTransformation = (data) => {
       transfData.push({
         category: "Month " + res.AWS[i].month,
         gcp: res.AWS[i].totalPrice,
-        aws: res.GCP[i].totalPrice,
-        azure: res.AZURE[i].totalPrice,
+        aws: res.GCP[i].totalPrice
       });
     }
   }
 
-  console.log("transfData..", transfData);
   return transfData;
 };
