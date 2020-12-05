@@ -251,5 +251,6 @@ export default function ConfigCard() {
         {getGCPConfig()}
       </CardContent>
     </Card>
+
   );
 }

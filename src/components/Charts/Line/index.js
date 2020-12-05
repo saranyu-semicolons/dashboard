@@ -88,7 +88,7 @@ function MinMaxQuotes(props) {
     //series.dataFields.refNo = "value";
     series.dataFields.valueY = "gcp";
     //series.dataFields.value = "gValue";
-    series.tooltipText = "{valueY}";
+    series.tooltipText = "GCP - {valueY}";
     // series.sequencedInterpolation = true;
     // series.fill = series.stroke;
     // series.fillOpacity = 0.3;
@@ -105,11 +105,11 @@ function MinMaxQuotes(props) {
     //series2.sequencedInterpolation = true;
     //series2.defaultState.transitionDuration = 1500;
     //series2.stroke = amchart.colors.getIndex(6);
-    series2.tooltipText = "{valueY}"; 
+    series2.tooltipText = "AWS - {valueY}"; 
     //series2.fill = series2.stroke;
     //series2.tensionX = 0.8;
 
-
+    /*
     var series3 = amchart.series.push(new am4charts.LineSeries());
     // series3.dataFields.dateX = "date";
     series3.dataFields.categoryX = "category";
@@ -120,7 +120,7 @@ function MinMaxQuotes(props) {
     //series2.sequencedInterpolation = true;
     //series2.defaultState.transitionDuration = 1500;
     //series2.stroke = amchart.colors.getIndex(6);
-    series3.tooltipText = "{valueY}"; 
+    series3.tooltipText = "{valueY}";  */
 
 
     amchart.cursor = new am4charts.XYCursor();
