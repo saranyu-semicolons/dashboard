@@ -45,7 +45,7 @@ const Layout = (props) => {
     //   });
     axios.request({
         url:"https://saranyu-computantis.ue.r.appspot.com/servicePriceJson",
-        method: "post",https://saranyu-computantis.ue.r.appspot.com
+        method: "post",
         data: {activityId: value.activityId}
     }).then((data) => {
       console.log("data values", data)
