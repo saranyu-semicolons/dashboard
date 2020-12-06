@@ -75,6 +75,10 @@ function MinMaxQuotes(props) {
 // End Rough testing
   useEffect(() => {
     let amchart = am4core.create("minMaxQuotes", am4charts.XYChart);
+    amchart.colors.list = [
+      am4core.color("#ED7D31"),
+      am4core.color("#4472C7"),
+    ];
     amchart.data = chartData;
     var categoryAxis = amchart.xAxes.push(new am4charts.CategoryAxis());
     categoryAxis.title.text = "Months";
@@ -98,7 +102,8 @@ function MinMaxQuotes(props) {
     var series2 = amchart.series.push(new am4charts.LineSeries());
     // series2.dataFields.dateX = "date";
     series2.dataFields.categoryX = "category";
-
+    series2.stroke = amchart.colors.getIndex(6);
+    
     //series2.dataFields.refNo = "refNo";
     series2.dataFields.valueY = "aws";
     //series2.dataFields.value = "awValue";
@@ -108,7 +113,7 @@ function MinMaxQuotes(props) {
     series2.tooltipText = "AWS - {valueY}"; 
     //series2.fill = series2.stroke;
     //series2.tensionX = 0.8;
-
+    
     /*
     var series3 = amchart.series.push(new am4charts.LineSeries());
     // series3.dataFields.dateX = "date";
@@ -122,7 +127,7 @@ function MinMaxQuotes(props) {
     //series2.stroke = amchart.colors.getIndex(6);
     series3.tooltipText = "{valueY}";  */
 
-
+    amchart.strokeWidth = 5
     amchart.cursor = new am4charts.XYCursor();
     amchart.cursor.xAxis = categoryAxis;
     amchart.scrollbarX = new am4core.Scrollbar();

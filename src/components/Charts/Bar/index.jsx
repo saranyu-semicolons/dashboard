@@ -47,15 +47,19 @@ function Bar(props) {
     //   const cData = barTransformation(totalPriceArray);
   },[totalPriceArray]);
   useEffect(() => {
+   
     var chart = am4core.create("chartdiv", am4charts.XYChart);
     chart.data = chartData;
     chart.colors.step = 2;
-
+    chart.colors.list = [
+      am4core.color("#ED7D31"),
+      am4core.color("#4472C7"),
+    ];
     chart.legend = new am4charts.Legend();
     chart.legend.position = "top";
     chart.legend.paddingBottom = 20;
     chart.legend.labels.template.maxWidth = 95;
-
+    
     var xAxis = chart.xAxes.push(new am4charts.CategoryAxis());
     xAxis.dataFields.category = "category";
     xAxis.renderer.cellStartLocation = 0.1;
