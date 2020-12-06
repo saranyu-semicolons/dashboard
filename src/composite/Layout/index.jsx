@@ -55,7 +55,7 @@ const Layout = (props) => {
   };
 
   const getDataByConfig = (configValueObj) => {
-    const requestOptions = {
+    /*const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ activityId:activityId,  aws: configValueObj.aws, gcp: configValueObj.gcp })}
@@ -63,7 +63,15 @@ const Layout = (props) => {
       .then((data) => {
        
         setData(data);
-      });;
+      });;*/
+
+      axios.request({
+          url:"http://localhost:3060/servicePriceJson",
+          method: "post",
+          data: { activityId:activityId,  aws: configValueObj.aws, gcp: configValueObj.gcp }
+      }).then((data) => {
+        setData(data);
+      });
   };
   /*
   useEffect(() => {
