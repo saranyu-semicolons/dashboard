@@ -22,13 +22,15 @@ const useStyles = makeStyles((theme) =>
 
 const Layout = (props) => {
   const classes = useStyles();
-  const [category, setCardCategory] = React.useState("Service Dashboard");
+  const [category, setCardCategory] = React.useState("");
+  const [open, setOpen] = React.useState(true);
   const [data, setData] = React.useState({ data: {} });
 
   const [activityId, setActivityId] = React.useState(null);
   const [loader, setLoader] = React.useState(false);
 	const getCategoryType = (type) => {
-		setCardCategory(type);
+    setCardCategory(type);
+    setOpen(false);
 	};
 
   const getDataByActivity = (value) => {
@@ -55,6 +57,7 @@ const Layout = (props) => {
   };
 
   const getDataByConfig = (configValueObj) => {
+    setLoader(true)
     /*const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -70,7 +73,7 @@ const Layout = (props) => {
           method: "post",
           data: { activityId:activityId,  aws: configValueObj.aws, gcp: configValueObj.gcp }
       }).then((data) => {
-        setData(data);
+        setData(data.data);
       });
   };
   /*
@@ -97,7 +100,7 @@ const Layout = (props) => {
 
 					<Grid conainer justify='center'>
 						{category === "" ? (
-							<Button variant='contained' color='primary'>
+							<Button variant='contained' color='primary' style={{width: "90%", marginTop: '2%', marginLeft: '5%', padding: "2%"}}>
 								Service Dashboard
 							</Button>
 						) : (
