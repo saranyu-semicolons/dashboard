@@ -7,7 +7,7 @@ export const lineTransformation = (data) => {
       // console.log("line transform",res.AWS[i].month);
 
       transfData.push({
-        category: "Month " + res.AWS[i].month,
+        category: res.AWS[i].month,
         gcp: res.AWS[i].totalPrice,
         aws: res.GCP[i].totalPrice,
       });

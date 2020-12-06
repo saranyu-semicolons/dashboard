@@ -10,6 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import MenuDrawer from "../../components/MenuDrawer";
 import Toolbar from "@material-ui/core/Toolbar";
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) =>
 	createStyles({
@@ -37,11 +38,19 @@ const Layout = (props) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ activityId: value.activityId }),
     };
-    fetch("http://localhost:3060/chart", requestOptions)
-      .then((res) => res.json())
-      .then((data) => {
+    // fetch("http://localhost:3060/servicePriceJson", requestOptions)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setData(data);
+    //   });
+    axios.request({
+        url:"http://localhost:3060/servicePriceJson",
+        method: "post",
+        data: {activityId: value.activityId}
+    }).then((data) => {
+      console.log("data values", data)
         setData(data.data);
-      });
+    });
     setActivityId(value.activityId);
   };
 
@@ -49,9 +58,10 @@ const Layout = (props) => {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ activityId:activityId,[configValueObj.name]:configValueObj.value })}
+      body: JSON.stringify({ activityId:activityId,  aws: configValueObj.aws, gcp: configValueObj.gcp })}
       fetch('http://localhost:3060/servicePriceJson', requestOptions).then((res) => res.json())     
       .then((data) => {
+       
         setData(data);
       });;
   };
@@ -97,7 +107,7 @@ const Layout = (props) => {
             {category !== "" && <Chart totalPriceArray={data.totalPriceArray} />}
           </Grid>
           <Grid item xs={6}>
-            {category !== "" && <ConfigCard getDataByConfig={getDataByConfig}/>}
+            {category !== "" && <ConfigCard getDataByConfig={getDataByConfig} awsData={data.awsData} gcpData={data.gcpData}/>}
           </Grid>
         </>
         )}
