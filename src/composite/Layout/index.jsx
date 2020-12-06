@@ -117,6 +117,9 @@ const Layout = (props) => {
           <Grid item xs={6}>
             {category !== "" && <ConfigCard getDataByConfig={getDataByConfig} awsData={data.awsData} gcpData={data.gcpData}/>}
           </Grid>
+          <Button variant='contained' disabled style={{marginTop: '2%', marginLeft: '45%'}}>
+								Procure
+					</Button>
         </>
         )}
       </Grid>
