@@ -31,7 +31,6 @@ const Layout = (props) => {
 		setCardCategory(type);
 	};
 
-  
   const getDataByActivity = (value) => {
     setLoader(true)
     const requestOptions = {
