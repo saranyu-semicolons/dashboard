@@ -44,8 +44,8 @@ const Layout = (props) => {
     //     setData(data);
     //   });
     axios.request({
-        url:"http://localhost:3060/servicePriceJson",
-        method: "post",
+        url:"https://saranyu-computantis.ue.r.appspot.com/servicePriceJson",
+        method: "post",https://saranyu-computantis.ue.r.appspot.com
         data: {activityId: value.activityId}
     }).then((data) => {
       console.log("data values", data)
@@ -66,7 +66,7 @@ const Layout = (props) => {
       });;*/
 
       axios.request({
-          url:"http://localhost:3060/servicePriceJson",
+          url:"https://saranyu-computantis.ue.r.appspot.com/servicePriceJson",
           method: "post",
           data: { activityId:activityId,  aws: configValueObj.aws, gcp: configValueObj.gcp }
       }).then((data) => {
