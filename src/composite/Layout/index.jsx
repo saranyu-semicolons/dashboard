@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) =>
 
 const Layout = (props) => {
   const classes = useStyles();
-  const [category, setCardCategory] = React.useState("Get Started");
+  const [category, setCardCategory] = React.useState("Service Dashboard");
   const [data, setData] = React.useState({ data: {} });
 
   const [activityId, setActivityId] = React.useState(null);
@@ -31,6 +31,7 @@ const Layout = (props) => {
 		setCardCategory(type);
 	};
 
+  
   const getDataByActivity = (value) => {
     setLoader(true)
     const requestOptions = {
@@ -98,7 +99,7 @@ const Layout = (props) => {
 					<Grid conainer justify='center'>
 						{category === "" ? (
 							<Button variant='contained' color='primary'>
-								Get Started
+								Service Dashboard
 							</Button>
 						) : (
 							<Filter title={category} getDataByActivity={getDataByActivity} />
@@ -117,9 +118,7 @@ const Layout = (props) => {
           <Grid item xs={6}>
             {category !== "" && <ConfigCard getDataByConfig={getDataByConfig} awsData={data.awsData} gcpData={data.gcpData}/>}
           </Grid>
-          <Button variant='contained' disabled style={{marginTop: '2%', marginLeft: '45%'}}>
-								Procure
-					</Button>
+          
         </>
         )}
       </Grid>

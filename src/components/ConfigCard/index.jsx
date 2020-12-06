@@ -1,5 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { Button } from "@material-ui/core";
 import {
   Grid,
   Card,
@@ -151,7 +152,7 @@ export default function ConfigCard(props) {
 
   const getAwsConfig = () => {
     return (
-      <>
+      <div style={{height: '500px'}}>
         <Typography>AWS</Typography>
         <Divider />
         <Typography>Annual Cost : {awsData.annualCost}</Typography>
@@ -258,14 +259,18 @@ export default function ConfigCard(props) {
           ))}
         </Select>
 
+        <Button variant='contained' color="primary" style={{marginTop: '10%', marginLeft: '40%'}}>
+					Procure
+				</Button>
+
         {/* <TextField id="standard-basic" label="UpFront" fullWidth /> */}
-      </>
+      </div>
     );
   };
 
   const getGCPConfig = () => {
     return (
-      <>
+      <div style={{height: '500px'}}>
         <Typography>GCP</Typography>
         <Divider />
 
@@ -335,7 +340,10 @@ export default function ConfigCard(props) {
           </option>
           ))}
         </Select>
-      </>
+        <Button variant='contained' color="primary" style={{marginTop: '23%', marginLeft: '40%'}}>
+					Procure
+				</Button>
+      </div>
     );
   };
   return (
