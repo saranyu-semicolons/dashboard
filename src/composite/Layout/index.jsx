@@ -30,7 +30,14 @@ const Layout = (props) => {
 	const getCategoryType = (type) => {
 		setCardCategory(type);
 	};
-
+	  axios.request({
+        url:"https://saranyu-computantis.ue.r.appspot.com/",
+        method: "post",
+        data: {activityId: value.activityId}
+    }).then((data) => {
+      console.log("data values", data)
+        setData(data.data);
+    });
   const getDataByActivity = (value) => {
     setLoader(true)
     const requestOptions = {
